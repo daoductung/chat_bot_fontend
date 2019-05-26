@@ -1,0 +1,1144 @@
+{% load static %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- /Added by HTTrack -->
+<head>
+    <title>KHOA CÔNG NGHỆ THÔNG TIN - UTEHY</title>
+    <link href="{% static 'styles/main.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'styles/nivo-slider.css' %}" rel="stylesheet"/>
+    <link href="{% static 'styles/bot.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" media="screen and (max-width: 480px)" href="{% static 'styles/mobile.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <script type="text/javascript" src="{% static 'scripts/jquery-1.7.1.min.js' %}"></script>
+
+
+    <script type="text/javascript" src="{% static 'scripts/jquery.nivo.slider.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/jquery.scrollbox.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/custom.js' %}"></script>
+
+    <script type="text/javascript">
+	    //jQuery.noConflict();
+		$(document).ready(function ()
+		{
+
+		    $('table').attr("rules", "all");
+		    $('table').css("border-color", "#cccccc")
+			if ($(window).width() <= 500) {
+				$('#menu>ul li').find('li').parent().prev().removeAttr("href");
+				var pull = $('#pull');
+				menu = $('#menu>ul');
+				menu.addClass("show");
+
+				$(pull).click(function () {
+					menu.slideToggle();
+				});
+				$('#menu>ul li').click(function () {
+					$('#menu>ul li ul').slideUp();
+					if ($(this).children('ul').is(':visible')) {
+						$('#menu>ul li ul').slideUp();
+					}
+					else {
+						
+						var sub = $(this).children('ul');
+						sub.slideToggle();
+
+					}
+					 					
+				});
+			}
+
+			$('#product').scrollbox({
+			    direction: 'h',
+			    switchItems: 3,
+			    distance: 670
+			});
+		});
+
+		$(document).ready(function () {
+		           	
+        	$(window).scroll(function () {
+        		var st = $(window).scrollTop()
+
+        		if (st >=1540) {
+
+        			$("#header").addClass("fix-header");
+        		}
+
+        		else {
+        			$("#header").removeClass("fix-header");
+        		}
+        	});
+        	$('.slider').hover(function () {
+
+        		$('.nivo-directionNav a').fadeIn();
+        	}, function () {
+        		$('.nivo-directionNav a').fadeOut();
+        	});
+
+
+        	$('.item .rep').hide();
+
+        	$('.item  em.show').click(function () {
+
+        		$('.item .rep').hide();
+        		$(this).parent().parent().find('div').show();
+        	});
+        });
+
+
+
+
+
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        var timeOut;
+        function addMessage(msg) {
+            if(msg.trim() == '') return;
+		    $('<div/>').addClass('text').text(msg.trim()).appendTo($('<div/>').addClass('message-item reply').appendTo('#chat-box-body'));
+            $('#chat-box-body').scrollTop($('#chat-box-body')[0].scrollHeight);
+		}
+		function addReply(){
+            var text = receiveMessage();
+            var obj = JSON.parse(text);
+            var parent = $('<div/>').addClass('message-item');
+
+            $('<img/>').attr("src", "/static/images/chatfuel.png").appendTo(parent);
+            var text = obj.message.text;
+            text.forEach(function(value){
+                $('<div/>').addClass('text').html(value).appendTo(parent);
+            })
+            /*var limitChar = 300; //300 ký tự
+            if(text.length > limitChar){
+                var totalSplit = Math.ceil(text.length / limitChar);
+                for(var i = 0; i < totalSplit; i++){
+                    var textSplit = text.substr((i*limitChar), limitChar); //lấy từ vị trí i*limitChar, lấy limitChar ký tự
+                    $('<div/>').addClass('text').text(textSplitfi).appendTo(parent);
+                }
+            }else{
+                $('<div/>').addClass('text').text(text).appendTo(parent);
+            }*/
+            if(obj.message.hasOwnProperty('attachment')){
+                if(obj.message.attachment.hasOwnProperty('buttons')){
+                    var button = $('<div/>').addClass('attachment');
+                    obj.message.attachment.buttons.forEach(function(value, key){
+                        switch(value.type){
+                            case 'text':
+                               $('<button/>').addClass('btn-payload').html(value.title).appendTo(button);
+                            break;
+                            default:
+                            break;
+                        }
+                    });
+                    parent.append(button);
+                }
+            }
+            parent.appendTo('#chat-box-body');
+            $('#chat-box-body').scrollTop($('#chat-box-body')[0].scrollHeight);
+		}
+        function sendMessage(text){
+            if(text.trim() == '') return;
+            var input = {'input': text};
+            $.ajax({
+                url: 'http://127.0.0.1:9333/input',
+                type: 'POST',
+                data: JSON.stringify(input),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                async: false,
+                success: function(msg) {
+                    }
+                });
+            addReply();
+         }
+        function receiveMessage(){
+             var jqXHR = $.ajax({
+                            type: "POST",
+                            url: "http://127.0.0.1:9333/output",
+                            async: false,
+                            });
+                     return jqXHR.responseText;
+         }
+        var timer;
+        function endAndStartTimer() {
+             window.clearTimeout(timer);
+             timer = window.setTimeout(function(){sendMessage('Lâu quá không thấy nhắn tin');},60000);
+        }
+
+		$(document).ready(function () {
+			$('#frame').append('<div id="backtotop">	<img alt="" src="{% static 'images/totop.png' %} " /></div>');
+			$('#top').fadeOut();
+			$(window).scroll(function () {
+				if ($(window).scrollTop() != 0) {
+					$('#backtotop').fadeIn();
+				}
+				else {
+					$('#backtotop').fadeOut();
+				}
+			});
+			$('#backtotop').click(function () {
+				$('html,body').animate({ scrollTop: 0 }, 500);
+
+			});
+			$('#input').keyup(function(e) {
+			    if(e.keyCode == 13){
+			        addMessage(e.target.value);
+			        sendMessage(e.target.value);
+                    e.target.value = '';
+
+                    endAndStartTimer();
+			    }
+			});
+
+
+			$('#sent').click(function(){
+			    addMessage($('#input').val());
+                sendMessage($('#input').val());
+			    $('#input').val('')
+			});
+			$('.close').click(function(){
+			    $('.chat-box_body').hide();
+			    $('.chat-box_input').hide();
+			    $('.chat-box').css("height", '50px');
+			    $('.close').attr('toggle', 0).hide();
+			});
+			$('.chat-box_head span').click(function(){
+			    $('.chat-box_body').show();
+			    $('.chat-box_input').show();
+			    $('.chat-box').css("height", '500px');
+			    $('.close').attr('toggle', 1).show();
+			});
+			$(document).on('click', '.btn-payload', function(e){
+			    addMessage($(e.target).text());
+			    sendMessage($(e.target).text());
+
+			})
+		});
+
+
+    </script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<form name="aspnetForm" method="post" action="http://fit.utehy.edu.vn/" id="aspnetForm">
+    <div>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="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AgEPZBYEAgEPFgIfAAIFFgpmD2QWAmYPFQJkL3VwbG9hZC9pbWFnZXMvc2xpZGUvTUFUMTUucG5nICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAIxMWQCAQ9kFgJmDxUCZHVwbG9hZC9pbWFnZXMvc2xpZGUvZml0LmpwZyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICABMWQCAg9kFgJmDxUCZC91cGxvYWQvaW1hZ2VzL3NsaWRlL3dlYnNpdGUuanBnICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICACMTZkAgMPZBYCZg8VAmR1cGxvYWQvaW1hZ2VzL3NsaWRlL3Zhbm5naGUuanBnICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgATRkAgQPZBYCZg8VAmQvdXBsb2FkL2ltYWdlcy9zbGlkZS8xMi5KUEcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgAjE3ZAIDDxYCHwACBRYKZg9kFgJmDxUDAjExZGh0dHA6Ly9maXQudXRlaHkuZWR1LnZuL0Fubm91bmNlLmFzcHg/YWlkPTE0NCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICArTWljcm9zb2Z0IEFjYWRlbWljIFRvdXIgMjAxNSB04bqhaSBGSVRVVEVIWWQCAQ9kFgJmDxUDATFkaHR0cDovL2ZpdC51dGVoeS5lZHUudm4vSW50cm8uYXNweD9pZD05ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC1U4bqtcCB0aOG7gyBjw6FuIGLhu5kgZ2nhuqNu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dHXhuqduIDM2ZAIBDw8WAh8EaGRkAgYPZBYEZg8VAgQ2NzEyclF1eeG6v3QgxJHhu4tuaCB0aMO0aSBo4buNYyAoa+G7tyBsdeG6rXQgZG8gbmdo4buJIGjhu41jIGTDoGkgbmfDoHkpIFRLMTMuNSxUSzE1LjUsIFRLMTUuMywgVEsxNi4xLCBUSzE2LjIsIFRLMTYuN2QCAQ8PFgIfBGhkZAIHD2QWBGYPFQIENjcwODlRdXnhur90IMSR4buLbmggdGjDtGkgaOG7jWMgY2hvIHNpbmggdmnDqm4gVEsxNi40LCBUSzE2LjVkAgEPDxYCHwRoZGQCAw8WAh8AAgYWDGYPZBYCZg8VAmRodHRwOi8vZml0LnV0ZWh5LmVkdS52bi9JbnRyby5hc3B4P2lkPTExICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI0Lhu5kgbcO0biBDw7RuZyBuZ2jhu4cgcGjhuqduIG3hu4FtZAIBD2QWAmYPFQJkaHR0cDovL2ZpdC51dGVoeS5lZHUudm4vSW50cm8uYXNweD9pZD0xMiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC1C4buZIG3DtG4gTeG6oW5nIG3DoXkgdMOtbmggJiBUcnV54buBbiB0aMO0bmdkAgIPZBYCZg8VAmRodHRwczovL3NpdGVzLmdvb2dsZS5jb20vc2l0ZS9jZWZpdHV0ZWh5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIULhu5kgbcO0biBL4bu5IHRodeG6rXQgbcOheSB0w61uaGQCAw9kFgJmDxUCZGh0dHA6Ly9hcHRlY2gudXRlaHkuZWR1LnZuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAcVHJ1bmcgdMOibSBIxrBuZyBZw6puIEFwdGVjaGQCBA9kFgJmDxUCZGh0dHA6Ly91dGVoeS5lZHUudm4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAcVHLGsOG7nW5nIMSQSFNQS1QgSMawbmcgWcOqbmQCBQ9kFgJmDxUCZGh0dHA6Ly90dXllbnNpbmgudXRlaHkuZWR1LnZuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAfVHJhbmcgdHV54buDbiBzaW5oIDIwMTQgLSBVVEVIWWQCCQ8WAh8AAgQWCGYPZBYEAgIPFQIPSW50cm8uYXNweD9pZD00Dkdp4bubaSB0aGnhu4d1ZAIDDxYCHwACCBYQAgEPZBYCZg8VAhBJbnRyby5hc3B4P2lkPTM3C0zhu51pIG5n4buPZAICD2QWAmYPFQIPSW50cm8uYXNweD9pZD00GUzhu4tjaCBz4butIHBow6F0IHRyaeG7g25kAgMPZBYCZg8VAg9JbnRyby5hc3B4P2lkPTUXU+G7qSBt4buHbmggdOG6p20gbmjDrG5kAgQPZBYCZg8VAg9JbnRyby5hc3B4P2lkPTYdQ2hp4bq/biBsxrDhu6NjIHBow6F0IHRyaeG7g25kAgUPZBYCZg8VAg9JbnRyby5hc3B4P2lkPTcVQmFuIGzDo25oIMSR4bqhbyBraG9hZAIGD2QWAmYPFQIPSW50cm8uYXNweD9pZD04FUPGoSBj4bqldSB04buVIGNo4bupY2QCBw9kFgJmDxUCD0ludHJvLmFzcHg/aWQ9ORXEkOG7mWkgbmfFqSBjw6FuIGLhu5lkAggPZBYCZg8VAhBJbnRyby5hc3B4P2lkPTEwFUPGoSBz4bufIHbhuq10IGNo4bqldGQCAQ9kFgQCAg8VAhBJbnRyby5hc3B4P2lkPTI5FkLhu5kgbcO0biAtIFRydW5nIHTDom1kAgMPFgIfAAIEFggCAQ9kFgJmDxUCEEludHJvLmFzcHg/aWQ9MTEZQ8O0bmcgbmdo4buHIHBo4bqnbiBt4buBbWQCAg9kFgJmDxUCEEludHJvLmFzcHg/aWQ9MTIjTeG6oW5nIG3DoXkgdMOtbmggJiBUcnV54buBbiB0aMO0bmdkAgMPZBYCZg8VAhBJbnRyby5hc3B4P2lkPTEzF0vhu7kgdGh14bqtdCBtw6F5IHTDrW5oZAIED2QWAmYPFQIQSW50cm8uYXNweD9pZD0xNBxIxrBuZyBZw6puIEFwdGVjaDogQ05UVCAmIFRUZAICD2QWBAICDxUCEEludHJvLmFzcHg/aWQ9MTYLxJDDoG8gdOG6oW9kAgMPFgIfAAIFFgoCAQ9kFgJmDxUCEEludHJvLmFzcHg/aWQ9MzgQU2F1IMSR4bqhaSBo4buNY2QCAg9kFgJmDxUCEEludHJvLmFzcHg/aWQ9MTYXxJDhuqFpIGjhu41jIGNow61uaCBxdXlkAgMPZBYCZg8VAhBJbnRyby5hc3B4P2lkPTM5GcSQ4bqhaSBo4buNYyBsacOqbiB0aMO0bmdkAgQPZBYCZg8VAhBJbnRyby5hc3B4P2lkPTE3FkNhbyDEkeG6s25nIGNow61uaCBxdXlkAgUPZBYCZg8VAhBJbnRyby5hc3B4P2lkPTE4EkNhbyDEkeG6s25nIG5naOG7gWQCAw9kFgQCAg8VAhBOZXdzLmFzcHg/Y2lkPTE1CVRpbiB04bupY2QCAw8WAh8AAgUWCgIBD2QWAmYPFQIQTmV3cy5hc3B4P3NpZD0zMQxUdXnhu4NuIHNpbmhkAgIPZBYCZg8VAhBOZXdzLmFzcHg/c2lkPTQwFVRpbiB04bupYyDEkcOgbyB04bqhb2QCAw9kFgJmDxUCEE5ld3MuYXNweD9zaWQ9NDEUSG/huqF0IMSR4buZbmcgY2h1bmdkAgQPZBYCZg8VAhBOZXdzLmFzcHg/c2lkPTQyGEjhu41jIHZpw6puIC0gU2luaCB2acOqbmQCBQ9kFgJmDxUCEE5ld3MuYXNweD9zaWQ9NDMPVGluIHThu6ljIGtow6FjZGS/0JBizZLGiPW6Sxu2ZFgWJu02oS0YafW/P6VdnunYug=="/>
+    </div>
+
+    <div>
+
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334"/>
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="/wEdAA9gwW7crcwSQkRUBHqHKwR8oEKXDauQfYqGWZkhmAjZy8cMDvJgO2xWEt66QnaDdJsqRp2JoWwsRq4GxB9LS5xYxdmrgRkZOhQcmlLTNvFwL3HE28d0BHdCO5MFo9qwr4NS1B+5F1j3aY278oRdZ3k6b8i9/cnfCamjAN8dICa2fMY9mPqr3sXVqWOkNnEtmq7j7dallA1vzavOzYqdPeuHVXpGQB+5+uolroumqcYWCzmmqSLL97/LMS8X1K7UHJoAXPyLHQO/DfyucYmA0AjdIBbqi4ZqIak11hr0+/1CsLktz5VPBFqSrBE+EMqLcdd0hMbJ0ic+gpkmQThZOFUUAuAg6feBirOzO5qeU15Nzw=="/>
+    </div>
+    <div id="frame">
+        <div id="header">
+            <div id="menu">
+
+                <ul>
+
+                    <li><a href='Default.html'>
+                        Home</a>
+
+                        <ul>
+
+                        </ul>
+
+                    </li>
+                    <input type="hidden" name="ctl00$rptCate$ctl00$hdCateID" id="ctl00_rptCate_ctl00_hdCateID"
+                           value="10"/>
+
+
+                    <li><a href='Introdcfd.html?id=4'>
+                        Giới thiệu</a>
+
+                        <ul>
+
+                            <li><a href='Intro4411.html?id=37'>
+                                Lời ngỏ</a></li>
+
+                            <li><a href='Introdcfd.html?id=4'>
+                                Lịch sử phát triển</a></li>
+
+                            <li><a href='Introd61c.html?id=5'>
+                                Sứ mệnh tầm nhìn</a></li>
+
+                            <li><a href='Intro3a9f.html?id=6'>
+                                Chiến lược phát triển</a></li>
+
+                            <li><a href='Intro8803.html?id=7'>
+                                Ban lãnh đạo khoa</a></li>
+
+                            <li><a href='Introc3c9.html?id=8'>
+                                Cơ cấu tổ chức</a></li>
+
+                            <li><a href='Intro5255.html?id=9'>
+                                Đội ngũ cán bộ</a></li>
+
+                            <li><a href='Introf41b.html?id=10'>
+                                Cơ sở vật chất</a></li>
+
+                        </ul>
+
+                    </li>
+                    <input type="hidden" name="ctl00$rptCate$ctl01$hdCateID" id="ctl00_rptCate_ctl01_hdCateID"
+                           value="11"/>
+
+
+                    <li><a href='Intro95dc.html?id=29'>
+                        Bộ môn - Trung tâm</a>
+
+                        <ul>
+
+                            <li><a href='Intro0055.html?id=11'>
+                                Công nghệ phần mềm</a></li>
+
+                            <li><a href='Intro4ef9.html?id=12'>
+                                Mạng máy tính & Truyền thông</a></li>
+
+                            <li><a href='Intro6e03.html?id=13'>
+                                Kỹ thuật máy tính</a></li>
+
+                            <li><a href='Intro87f1.html?id=14'>
+                                Hưng Yên Aptech: CNTT & TT</a></li>
+
+                        </ul>
+
+                    </li>
+                    <input type="hidden" name="ctl00$rptCate$ctl02$hdCateID" id="ctl00_rptCate_ctl02_hdCateID"
+                           value="12"/>
+
+
+                    <li><a href='Intro2728.html?id=16'>
+                        Đào tạo</a>
+
+                        <ul>
+
+                            <li><a href='Introcdef.html?id=38'>
+                                Sau đại học</a></li>
+
+                            <li><a href='Intro2728.html?id=16'>
+                                Đại học chính quy</a></li>
+
+                            <li><a href='Intro1e35.html?id=39'>
+                                Đại học liên thông</a></li>
+
+                            <li><a href='Intro190a.html?id=17'>
+                                Cao đẳng chính quy</a></li>
+
+                            <li><a href='Introe371.html?id=18'>
+                                Cao đẳng nghề</a></li>
+
+                        </ul>
+
+                    </li>
+                    <input type="hidden" name="ctl00$rptCate$ctl03$hdCateID" id="ctl00_rptCate_ctl03_hdCateID"
+                           value="13"/>
+
+
+                    <li><a href='Intro6258.html?id=21'>
+                        Nghiên cứu khoa học</a>
+
+                        <ul>
+
+                            <li><a href='Introa9bc.html?id=19'>
+                                Định hướng nghiên cứu</a></li>
+
+                            <li><a href='Introe5cc.html?id=20'>
+                                Các nhóm nghiên cứu</a></li>
+
+                            <li><a href='Intro6258.html?id=21'>
+                                Danh sách đề tài</a></li>
+
+                            <li><a href='Intro9c8a.html?id=23'>
+                                Danh mục bài báo</a></li>
+
+                        </ul>
+
+                    </li>
+                    <input type="hidden" name="ctl00$rptCate$ctl04$hdCateID" id="ctl00_rptCate_ctl04_hdCateID"
+                           value="14"/>
+
+
+                    <li><a href='Newsc8dd.html?cid=15'>
+                        Tin tức</a>
+
+                        <ul>
+
+                            <li><a href='Newsf873.html?sid=31'>
+                                Tuyển sinh</a></li>
+
+                            <li><a href='News2d40.html?sid=40'>
+                                Tin tức đào tạo</a></li>
+
+                            <li><a href='News8891.html?sid=41'>
+                                Hoạt động chung</a></li>
+
+                            <li><a href='News7ae4.html?sid=42'>
+                                Học viên - Sinh viên</a></li>
+
+                            <li><a href='News07ca.html?sid=43'>
+                                Tin tức khác</a></li>
+
+                        </ul>
+
+                    </li>
+                    <input type="hidden" name="ctl00$rptCate$ctl05$hdCateID" id="ctl00_rptCate_ctl05_hdCateID"
+                           value="15"/>
+
+
+                    <li><a href='Event0c79.html?cid=16'>
+                        Sự kiện</a>
+
+                        <ul>
+
+                        </ul>
+
+                    </li>
+                    <input type="hidden" name="ctl00$rptCate$ctl06$hdCateID" id="ctl00_rptCate_ctl06_hdCateID"
+                           value="16"/>
+
+
+                    <li><a href='Announcef517.html?cid=17'>
+                        Thông báo</a>
+
+                        <ul>
+
+                        </ul>
+
+                    </li>
+                    <input type="hidden" name="ctl00$rptCate$ctl07$hdCateID" id="ctl00_rptCate_ctl07_hdCateID"
+                           value="17"/>
+
+                </ul>
+                <a id="pull">MENU</a>
+            </div>
+            <div id="banner">
+                <div class="school">
+                    TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT HƯNG YÊN
+                </div>
+                <div class="depart">
+                    KHOA CÔNG NGHỆ THÔNG TIN
+                </div>
+            </div>
+            <div id="search">
+                <input name="ctl00$txtSearch" id="ctl00_txtSearch" class="searchfield" type="text"
+                       placeholder="Tìm kiếm..."/>
+
+                <input type="submit" name="ctl00$btnSearch" value="Search" id="ctl00_btnSearch" class="submit"/>
+            </div>
+        </div>
+
+        <div id="slide-frame">
+            <div id="slideshow">
+
+                <div class="slider">
+                    <div id="slider" class="nivoSlider">
+
+                        <img src="{% static 'upload/images/slide/MAT15.png' %}" alt="" class="img-responsive"
+                             title='#htmlcaption11'/>
+
+                        <img src="{% static 'upload/images/slide/fit.jpg' %}" alt="" class="img-responsive"
+                             title='#htmlcaption1'/>
+
+                        <img src="{% static 'upload/images/slide/website.jpg' %}" alt="" class="img-responsive"
+                             title='#htmlcaption16'/>
+
+                        <img src="{% static 'upload/images/slide/vannghe.jpg' %}" alt="" class="img-responsive"
+                             title='#htmlcaption4'/>
+
+                        <img src="{% static 'upload/images/slide/12.jpg'  %}" alt="" class="img-responsive"
+                             title='#htmlcaption17'/>
+
+                    </div>
+
+                    <div id='htmlcaption11' class="nivo-html-caption">
+
+                        <p><a href='Announce27b1.html?aid=144'> Microsoft Academic Tour 2015 tại FITUTEHY</a></p>
+                    </div>
+
+                    <div id='htmlcaption1' class="nivo-html-caption">
+
+                        <p><a href='Intro5255.html?id=9'> Tập thể cán bộ giảng viên Khoa CNTT</a></p>
+                    </div>
+
+                    <div id='htmlcaption16' class="nivo-html-caption">
+
+                        <p><a href='Event01ec.html?eid=21'> Hội thi Olympic Tin học Sinh viên Trường ĐHSPKT Hưng Yên -
+                            Lần thứ 15</a></p>
+                    </div>
+
+                    <div id='htmlcaption4' class="nivo-html-caption">
+
+                        <p><a href='News3872.html?nid=83'> Tham gia hội diễn văn nghệ của cán bộ giảng viên Khoa
+                            CNTT</a></p>
+                    </div>
+
+                    <div id='htmlcaption17' class="nivo-html-caption">
+
+                        <p><a href='News76a7.html?nid=3209'> Vui cùng IT 2016</a></p>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="content">
+                <div id="news">
+                    <div class="box-title-1">
+                        <span class="box-text-1">Tin tức & Sự kiện </span>
+                    </div>
+                    <div id="news-content">
+                        <div id="news-left">
+                            <a id="ctl00_contentHome_linkimg" href="News2e21.html?nid=5279"><img
+                                    id="ctl00_contentHome_imgFirst" src="{% static 'images/noimg.png' %}"
+                                    style="border-width:0px;"/></a>
+
+                            <br/>
+                            <a id="ctl00_contentHome_hplFirst" class="news-first" href="News2e21.html?nid=5279">Khai mạc
+                                cuộc thi Vui cùng IT 2019</a>
+
+                            <br/>
+                            <div>
+                            <span class="date">
+                                20/03/2019</span><span class="view">
+                                    25 lượt xem</span>
+                            </div>
+                            <div class="news-first-subtitle">
+                                Mỗi năm một lần, Vui cùng IT đã trở thành một sân chơi thú vị và đầy bổ ích cho toàn thể
+                                sinh viên khoa CNTT. Được sự cho phép của ban lãnh đạo Khoa, sáng 20/03/2019 Khoa CNTT
+                                đã tổ chức trận khai mạc cuộc thi Vui Cùng IT năm 2019.
+                            </div>
+                        </div>
+                        <div id="news-right">
+
+                            <div class="item-post">
+
+                                <a href='Newsaf1c.html?nid=5276'>
+                                    <img src="{% static 'upload/images/news/avatars/IMG_9988.jpg'  %}"
+                                         alt='Thực tập nhận thức công nghệ tại Daikin Việt Nam'/>
+                                </a>
+                                <a href='Newsaf1c.html?nid=5276'>
+                                    Thực tập nhận thức công nghệ tại Daikin Việt Nam</a>
+                                <br/>
+
+
+                                <div>
+                                        <span class="date">
+                                            06/12/2018</span> <span class="view">
+                                                219 lượt xem</span>
+                                </div>
+                            </div>
+
+                            <div class="item-post">
+
+                                <a href='Newsd94f.html?nid=5274'>
+                                    <img src="{% static 'upload/images/news/avatars/ok%202.jpg' %}"
+                                         alt='Thăm quan và hợp tác với Tập đoàn DaiKin'/>
+                                </a>
+                                <a href='Newsd94f.html?nid=5274'>
+                                    Thăm quan và hợp tác với Tập đoàn DaiKin</a>
+                                <br/>
+
+
+                                <div>
+                                        <span class="date">
+                                            22/11/2018</span> <span class="view">
+                                                192 lượt xem</span>
+                                </div>
+                            </div>
+
+                            <div class="item-post">
+
+                                <a href='News5d88.html?nid=5273'>
+                                    <img src="{% static 'upload/images/news/avatars/DSC_2728.jpg'  %}"
+                                         alt='Thăm quan Công ty Cổ phần MISA - 2018'/>
+                                </a>
+                                <a href='News5d88.html?nid=5273'>
+                                    Thăm quan Công ty Cổ phần MISA - 2018</a>
+                                <br/>
+
+
+                                <div>
+                                        <span class="date">
+                                            09/11/2018</span> <span class="view">
+                                                313 lượt xem</span>
+                                </div>
+                            </div>
+
+                            <div class="item-post">
+
+                                <a href='News6842.html?nid=5272'>
+                                    <img src="{% static 'upload/images/news/avatars/image001.jpg'  %}"
+                                         alt='Tinh Vân Group Tuyển dụng'/>
+                                </a>
+                                <a href='News6842.html?nid=5272'>
+                                    Tinh Vân Group Tuyển dụng</a>
+                                <br/>
+
+
+                                <div>
+                                        <span class="date">
+                                            07/11/2018</span> <span class="view">
+                                                184 lượt xem</span>
+                                </div>
+                            </div>
+
+                            <div class="read-more">
+                                <a href="Newsc8dd.html?cid=15">Xem thêm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="students">
+                    <div class="box-title-2">
+                        <span class="box-text-2"> Hội thi sinh viên</span>
+                    </div>
+                    <div id="vcit" style="float: left; margin-right: 40px; position:relative">
+                        <a href="Introab5e.html?id=40">
+                            <h3 style="padding-bottom: 8px; color: #008a00; text-align: center">VUI CÙNG IT</h3>
+
+                            <img src="{% static 'upload/images/news/vcit.png' %}" alt="Hội thi Vui Cùng IT"/>
+                            <img src="{% static 'images/youtube.html'  %}" width="60px" alt="Xem"
+                                 style="position:absolute; left:130px; top:100px"/>
+                        </a>
+
+                    </div>
+                    <div id="olympic" style="margin-right: 0px;">
+                        <a href="http://fit.utehy.edu.vn/Intro.aspx?id=41">
+                            <h3 style="padding-bottom: 8px; color: #359BED; text-align: center">OLYMPIC TIN HỌC</h3>
+                            <img src="http://fit.utehy.edu.vn/upload/images/news/olympic.jpg"
+                                 alt="Hội thi Olympic Tin học"/>
+                        </a>
+                    </div>
+                    <br/>
+                    <div id="vntt" style="float: left; margin-right: 40px; position:relative">
+                        <a href="http://fit.utehy.edu.vn/Intro.aspx?id=45">
+                            <h3 style="padding-bottom: 8px; color: #008a00; text-align: center">VĂN NGHỆ - THỂ THAO</h3>
+                            <img src="http://fit.utehy.edu.vn/upload/images/news/vntt.jpg"
+                                 alt="Hoạt động văn nghệ thể thao"/>
+                        </a>
+
+                    </div>
+
+                    <div id="nckhsv" style="margin-right: 0px;">
+                        <a href="http://fit.utehy.edu.vn/Intro.aspx?id=46">
+                            <h3 style="padding-bottom: 8px; color: #359BED; text-align: center">NGHIÊN CỨU KHOA HỌC</h3>
+                            <img src="http://fit.utehy.edu.vn/upload/images/news/nckhsv.jpg" alt="Nghiên cứu khoa học"/>
+                        </a>
+                    </div>
+                </div>
+                <br/>
+                <script type="text/javascript">
+                $(function () {
+                    $('#product').scrollbox({
+                        direction: 'h',
+                        delay: 20,
+                        switchItems: 3,                       
+                        distance: 680,
+                        speed: 120
+                    });
+                });
+
+
+
+
+
+
+
+
+
+                </script>
+                <div id="nckh" style="margin-top: 20px; height: 290px; clear: both">
+                    <div class="box-title-3">
+                        <span class="box-text-3">Chuyển giao công nghệ </span>
+                    </div>
+                    <div id="product" class="scroll-img" style="text-align: center; height: 280px">
+                        <ul style="width:2000px; list-style:none; margin:0px; padding:0px;">
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=42'>Phần mềm chấm thi trắc
+                                    nghiệm</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=42'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/1.png'
+                                         alt='Phần mềm chấm thi trắc nghiệm'/>
+                                </a>
+
+                            </li>
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=44'>Phần mềm xử lý dữ liệu
+                                    PCGD</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=44'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/2.png'
+                                         alt='Phần mềm xử lý dữ liệu PCGD'/>
+                                </a>
+
+                            </li>
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=43'>Phần mềm khảo sát giảng
+                                    dạy</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=43'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/3.png'
+                                         alt='Phần mềm khảo sát giảng dạy'/>
+                                </a>
+
+                            </li>
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=44'>Phần mềm xử lý dữ liệu
+                                    PCGD</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=44'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/2.png'
+                                         alt='Phần mềm xử lý dữ liệu PCGD'/>
+                                </a>
+
+                            </li>
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=43'>Phần mềm khảo sát giảng
+                                    dạy</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=43'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/3.png'
+                                         alt='Phần mềm khảo sát giảng dạy'/>
+                                </a>
+
+                            </li>
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=42'>Phần mềm chấm thi trắc
+                                    nghiệm</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=42'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/1.png'
+                                         alt='Phần mềm chấm thi trắc nghiệm'/>
+                                </a>
+
+                            </li>
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=43'>Phần mềm khảo sát giảng
+                                    dạy</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=43'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/3.png'
+                                         alt='Phần mềm khảo sát giảng dạy'/>
+                                </a>
+
+                            </li>
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=42'>Phần mềm chấm thi trắc
+                                    nghiệm</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=42'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/1.png'
+                                         alt='Phần mềm chấm thi trắc nghiệm'/>
+                                </a>
+
+                            </li>
+
+                            <li style="float: left; height: 240px; width: 226px; font-weight:bold; font-size:12px">
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=44'>Phần mềm xử lý dữ liệu
+                                    PCGD</a><br/><br/>
+                                <a href='http://fit.utehy.edu.vn/Intro.aspx?id=44'>
+                                    <img style="height: 180px;"
+                                         src='http://fit.utehy.edu.vn/upload/images/product/2.png'
+                                         alt='Phần mềm xử lý dữ liệu PCGD'/>
+                                </a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+                <div id="partners">
+                    <div class="box-title-4">
+                        <span class="box-text-4"> Đơn vị hợp tác</span>
+                    </div>
+                    <div id="partner-content">
+
+                        <div style="height: 70px; padding:0px 10px 10px 0px; float:left;">
+                            <a href='http://vnpthungyen.com.vn/' title='VNPT Hưng Yên' target="_blank">
+                                <img style="height: 70px;" src='http://fit.utehy.edu.vn/Upload/Images/Partner/vnpt.jpg'
+                                     alt='VNPT Hưng Yên'/>
+                            </a>
+                        </div>
+
+                        <div style="height: 70px; padding:0px 10px 10px 0px; float:left;">
+                            <a href='http://www.saoviet.net.vn/' title='Sao Viet' target="_blank">
+                                <img style="height: 70px;"
+                                     src='http://fit.utehy.edu.vn/Upload/Images/Partner/saoviet.png' alt='Sao Viet'/>
+                            </a>
+                        </div>
+
+                        <div style="height: 70px; padding:0px 10px 10px 0px; float:left;">
+                            <a href='http://fpt-software.com/' title='FSOFT' target="_blank">
+                                <img style="height: 70px;" src='http://fit.utehy.edu.vn/Upload/Images/Partner/fsoft.png'
+                                     alt='FSOFT'/>
+                            </a>
+                        </div>
+
+                        <div style="height: 70px; padding:0px 10px 10px 0px; float:left;">
+                            <a href='http://www.misa.com.vn/' title='MISA' target="_blank">
+                                <img style="height: 70px;" src='http://fit.utehy.edu.vn/Upload/Images/Partner/misa.jpg'
+                                     alt='MISA'/>
+                            </a>
+                        </div>
+
+                        <div style="height: 70px; padding:0px 10px 10px 0px; float:left;">
+                            <a href='http://aptech.utehy.edu.vn/' title='Aptech' target="_blank">
+                                <img style="height: 70px;"
+                                     src='http://fit.utehy.edu.vn/Upload/Images/Partner/aptech.jpg' alt='Aptech'/>
+                            </a>
+                        </div>
+
+                        <div style="height: 70px; padding:0px 10px 10px 0px; float:left;">
+                            <a href='http://www.cmc.com.vn/' title='CMC' target="_blank">
+                                <img style="height: 70px;" src='http://fit.utehy.edu.vn/Upload/Images/Partner/cmc.jpg'
+                                     alt='CMC'/>
+                            </a>
+                        </div>
+
+                        <div style="height: 70px; padding:0px 10px 10px 0px; float:left;">
+                            <a href='http://nhatung.vn/' title='Nhat Tung NCT' target="_blank">
+                                <img style="height: 70px;"
+                                     src='http://fit.utehy.edu.vn/Upload/Images/Partner/nhattung.jpg'
+                                     alt='Nhat Tung NCT'/>
+                            </a>
+                        </div>
+
+                        <div style="height: 70px; padding:0px 10px 10px 0px; float:left;">
+                            <a href='http://www.tokyo.edu.vn/' title='TTNN Tokyo' target="_blank">
+                                <img style="height: 70px;" src='http://fit.utehy.edu.vn/Upload/Images/Partner/tokyo.jpg'
+                                     alt='TTNN Tokyo'/>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div id="right">
+
+                <div id="announce">
+                    <div class="box-title">
+                        Thông báo
+                    </div>
+                    <div class="box-right">
+                        <ul>
+
+                            <li><a href='http://fit.utehy.edu.vn/Announce.aspx?aid=6716'>
+                                Lịch nghĩ lễ giỗ tổ Hùng Vương và ngày quốc tế lao động 1-5-2019</a><img
+                                    id="ctl00_contentHome_RightControls1_rptAnnounce_ctl00_imgNews1" class="isnews"
+                                    src="http://fit.utehy.edu.vn/images/new-icon.gif"
+                                    style="border-style:None;height:16px;width:33px;border-width:0px;"/>
+                            </li>
+
+
+                            <li><a href='http://fit.utehy.edu.vn/Announce.aspx?aid=6717'>
+                                Phiếu điểm TK13 (sinh viên xem để kiểm tra và học cải thiện)</a><img
+                                    id="ctl00_contentHome_RightControls1_rptAnnounce_ctl01_imgNews1" class="isnews"
+                                    src="http://fit.utehy.edu.vn/images/new-icon.gif"
+                                    style="border-style:None;height:16px;width:33px;border-width:0px;"/>
+                            </li>
+
+
+                            <li><a href='http://fit.utehy.edu.vn/Announce.aspx?aid=6715'>
+                                Quyết định thôi học sinh viên TK15.2-TK16.4</a><img
+                                    id="ctl00_contentHome_RightControls1_rptAnnounce_ctl02_imgNews1" class="isnews"
+                                    src="http://fit.utehy.edu.vn/images/new-icon.gif"
+                                    style="border-style:None;height:16px;width:33px;border-width:0px;"/>
+                            </li>
+
+
+                            <li><a href='http://fit.utehy.edu.vn/Announce.aspx?aid=6714'>
+                                Quyết định v/v cho sv nghỉ học tạm thời và bảo lưu KQHT (Đặng Châu Lâm TK14.3)</a><img
+                                    id="ctl00_contentHome_RightControls1_rptAnnounce_ctl03_imgNews1" class="isnews"
+                                    src="http://fit.utehy.edu.vn/images/new-icon.gif"
+                                    style="border-style:None;height:16px;width:33px;border-width:0px;"/>
+                            </li>
+
+
+                            <li><a href='http://fit.utehy.edu.vn/Announce.aspx?aid=6713'>
+                                Thông báo số 851-CV/BTGTU ngày 28/3/2019 về việc tuyên truyền hội thi Olimpic toàn quốc
+                                2019</a><img id="ctl00_contentHome_RightControls1_rptAnnounce_ctl04_imgNews1"
+                                             class="isnews" src="http://fit.utehy.edu.vn/images/new-icon.gif"
+                                             style="border-style:None;height:16px;width:33px;border-width:0px;"/>
+                            </li>
+
+
+                            <li><a href='http://fit.utehy.edu.vn/Announce.aspx?aid=6710'>
+                                Lịch thi kết thúc học phần học kỳ 2 (2018-2019) từ tuần 36</a>
+                            </li>
+
+
+                            <li><a href='http://fit.utehy.edu.vn/Announce.aspx?aid=6712'>
+                                Quyết định thôi học (kỷ luật do nghỉ học dài ngày) TK13.5,TK15.5, TK15.3, TK16.1,
+                                TK16.2, TK16.7</a>
+                            </li>
+
+
+                            <li><a href='http://fit.utehy.edu.vn/Announce.aspx?aid=6708'>
+                                Quyết định thôi học cho sinh viên TK16.4, TK16.5</a>
+                            </li>
+
+
+                        </ul>
+                        <div class="read-more">
+                            <a href="http://fit.utehy.edu.vn/Announce.aspx?cid=17">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <ul>
+                        <li class="item0">
+                            <a href="http://fit.utehy.edu.vn/Master.aspx?mid=1">
+                                <img alt=""
+                                     src="http://fit.utehy.edu.vn/images/Master.png"/><span> Học viên cao học</span></a>
+                        </li>
+                        <li class="item1">
+                            <a href="http://fit.utehy.edu.vn/News.aspx?sid=42">
+                                <img alt=""
+                                     src="http://fit.utehy.edu.vn/images/Student.png"/><span> Sinh viên</span></a>
+                        </li>
+                        <li class="item2">
+                            <a href="http://fit.utehy.edu.vn/Intro.aspx?id=27">
+                                <img alt="" src="http://fit.utehy.edu.vn/images/Documents.png"/><span>Văn bản</span></a>
+                        </li>
+                        <li class="item3">
+                            <a href="http://fit.utehy.edu.vn/FAQ.aspx?cid=18">
+                                <img alt="" src="http://fit.utehy.edu.vn/images/fqa.png"/><span> Hỏi đáp</span></a>
+                        </li>
+                        <li class="item4">
+                            <a href="http://fit.utehy.edu.vn/Intro.aspx?id=24">
+                                <img alt="" src="http://fit.utehy.edu.vn/images/Contact.png"/><span> Liên hệ</span></a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div id="link">
+                    <div class="box-title">
+                        Liên kết
+                    </div>
+                    <div class="box-right">
+                        <ul>
+
+                            <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=11' target="_blank">
+                                Bộ môn Công nghệ phần mềm</a></li>
+
+                            <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=12' target="_blank">
+                                Bộ môn Mạng máy tính & Truyền thông</a></li>
+
+                            <li><a href='https://sites.google.com/site/cefitutehy' target="_blank">
+                                Bộ môn Kỹ thuật máy tính</a></li>
+
+                            <li><a href='http://aptech.utehy.edu.vn/' target="_blank">
+                                Trung tâm Hưng Yên Aptech</a></li>
+
+                            <li><a href='http://utehy.edu.vn/' target="_blank">
+                                Trường ĐHSPKT Hưng Yên</a></li>
+
+                            <li><a href='http://tuyensinh.utehy.edu.vn/' target="_blank">
+                                Trang tuyển sinh 2014 - UTEHY</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div id="hitcount">
+                    <div class="box-title">
+                        Bộ đếm truy cập
+                    </div>
+
+
+                    <div class="box-right">
+		<span style="line-height: 32px;">Số lượt truy cập: 
+			<script type="text/javascript" src="http://widget.supercounters.com/texthit.js"></script>
+			<script type="text/javascript">var sc_texthit_var = sc_texthit_var || []; sc_text_hit(792526, "", "464646");</script>
+			<br/>
+			</span>
+                        <!--	<span>Số người online:
+                            <script type="text/javascript" src="http://widget.supercounters.com/online_t.js"></script>
+                                <script type="text/javascript">sc_online_t(792523, "", "464646");</script>
+                                </span> -->
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="footer">
+            <div id="nav-footer">
+
+                <div class="item">
+                    <input type="hidden" name="ctl00$rptFooterCate$ctl00$hdFooterCateID"
+                           id="ctl00_rptFooterCate_ctl00_hdFooterCateID" value="11"/>
+                    <a href='http://fit.utehy.edu.vn/Intro.aspx?id=4'>
+                        Giới thiệu</a>
+
+                    <ul>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=37'>
+                            Lời ngỏ</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=4'>
+                            Lịch sử phát triển</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=5'>
+                            Sứ mệnh tầm nhìn</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=6'>
+                            Chiến lược phát triển</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=7'>
+                            Ban lãnh đạo khoa</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=8'>
+                            Cơ cấu tổ chức</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=9'>
+                            Đội ngũ cán bộ</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=10'>
+                            Cơ sở vật chất</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="item">
+                    <input type="hidden" name="ctl00$rptFooterCate$ctl01$hdFooterCateID"
+                           id="ctl00_rptFooterCate_ctl01_hdFooterCateID" value="12"/>
+                    <a href='http://fit.utehy.edu.vn/Intro.aspx?id=29'>
+                        Bộ môn - Trung tâm</a>
+
+                    <ul>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=11'>
+                            Công nghệ phần mềm</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=12'>
+                            Mạng máy tính & Truyền thông</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=13'>
+                            Kỹ thuật máy tính</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=14'>
+                            Hưng Yên Aptech: CNTT & TT</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="item">
+                    <input type="hidden" name="ctl00$rptFooterCate$ctl02$hdFooterCateID"
+                           id="ctl00_rptFooterCate_ctl02_hdFooterCateID" value="13"/>
+                    <a href='http://fit.utehy.edu.vn/Intro.aspx?id=16'>
+                        Đào tạo</a>
+
+                    <ul>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=38'>
+                            Sau đại học</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=16'>
+                            Đại học chính quy</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=39'>
+                            Đại học liên thông</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=17'>
+                            Cao đẳng chính quy</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/Intro.aspx?id=18'>
+                            Cao đẳng nghề</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="item">
+                    <input type="hidden" name="ctl00$rptFooterCate$ctl03$hdFooterCateID"
+                           id="ctl00_rptFooterCate_ctl03_hdFooterCateID" value="15"/>
+                    <a href='http://fit.utehy.edu.vn/News.aspx?cid=15'>
+                        Tin tức</a>
+
+                    <ul>
+
+                        <li><a href='http://fit.utehy.edu.vn/News.aspx?sid=31'>
+                            Tuyển sinh</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/News.aspx?sid=40'>
+                            Tin tức đào tạo</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/News.aspx?sid=41'>
+                            Hoạt động chung</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/News.aspx?sid=42'>
+                            Học viên - Sinh viên</a></li>
+
+                        <li><a href='http://fit.utehy.edu.vn/News.aspx?sid=43'>
+                            Tin tức khác</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <div id="copyright">
+                Bản quyền thuộc về Khoa Công nghệ Thông tin - Trường ĐHSPKT Hưng Yên
+            </div>
+        </div>
+    </div>
+</form>
+<div class="chat-box">
+    <div class="chat-box_head">
+        <span>Hỗ trợ tự động</span>
+        <div class="close" toggle="1"></div>
+    </div>
+    <div class="chat-box_body" id="chat-box-body">
+        <div class="message-item">
+            <img class="img" src="{% static 'images/chatfuel.png' %}" alt="">
+            <div class="text" >Xin chào, mình là trợ lý ảo tư vấn tuyển sinh cho khoa CNTT của trường đại học Sư phạm Kỹ thuật Hưng
+                Yên. Mình có thể tư vấn thông tin gì giúp bạn.
+            </div>
+        </div>
+
+    </div>
+    <div class="chat-box_input">
+        <input id="input" type="text" placeholder="Nhập tin nhắn">
+        <button id="sent">
+            <img src="{% static 'images/easyReturn.png' %}" alt="">
+        </button>
+    </div>
+</div>
+
+</body>
+
+<!-- Mirrored from fit.utehy.edu.vn/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Apr 2019 02:47:25 GMT -->
+</html>

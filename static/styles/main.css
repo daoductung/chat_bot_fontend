@@ -1,0 +1,1214 @@
+﻿body
+{
+    margin: 0px;
+    padding: 0px 0px;
+    font-family: "Arial", "Tahoma" , "Verdana", "Sans-Serif";
+    font-size: 1em;/*0.875em;*/
+    color: #464646;
+}
+ul
+{
+    margin:0px;
+    padding:0px;    
+}
+
+table ,td,tr
+{
+    border-color:#cccccc;
+}
+#header
+{
+    height: 8.75em; /*140px*/
+    width: 61.25em; /*980px;*/
+    background-color: #FFF;    
+    margin:0px auto;
+
+
+}
+  .fix-header #menu
+  {
+	 
+	 
+		  position:fixed;
+		  top:0px;
+		  z-index:99999;
+			      
+  }
+#slide-frame
+{
+    height: 17.5em;
+    width: 61.25em;
+    margin: 2em auto;  
+    
+}
+#slideshow
+{
+    height: 17.5em;
+    width: 100%;
+	height:275px;
+}
+
+#slideshow img
+{
+    width: inherit;
+    height: inherit;
+}
+
+#nav
+{
+    height:40px;
+    margin: 2em auto; 
+    width: 61.25em; 
+    border:1px solid #EEE;    
+}
+.school
+{
+
+}
+
+#nav-site
+{
+    width: 42.5em;
+    height:100%;
+    color:#999;
+padding:0px 10px;
+    float:left;
+}
+#nav-site a
+{
+    line-height:40px;
+    padding-left:3px;
+    color:#999;
+    font-size:0.8125em;
+}
+#nav-site a:hover
+{
+    color:#000;
+}
+
+#nav-date
+{
+    float:right;
+    margin-right:2em;
+    line-height:40px;
+    color:#999;
+    font-size:0.8125em;
+white-space: nowrap;
+}
+
+#main
+{    
+    width: 61.25em;    
+    background-color: #FFF;
+    text-align: justify;   
+    margin:0px auto;    
+}
+
+#right
+{
+    width: 16.875em; /* 270px;*/
+    float: right;   
+}
+
+#content ul{
+list-style:inside;
+}
+
+#content ul ul{
+    list-style-type: circle;
+    margin-left: 30px;
+}
+#content
+{
+    width: 42.5em;/* 680px;*/
+    height: 100%;
+    background-color: #FFF;
+    float: left; 
+	padding:0px 0px 30px 0px;   
+    vertical-align:top;
+	line-height: 21px
+}
+
+#footer
+{
+    height: 20.0em;
+    width: 100%;
+    background-color: #333;      
+    position:relative;
+    bottom:0px;
+    clear:both; 
+	  
+}
+
+#menu
+{
+    height: 40px;
+    background-color: #333;    
+    width: 61.25em;
+    position:absolute;
+	
+    top: 6.25em;   
+	
+}
+
+#pull
+{
+    display:none;   
+    width:100%;
+    height:100%;
+    color:#FFF;
+    line-height:40px;
+    text-indent:1em;
+    font-weight:bold;
+    background: url("http://fit.utehy.edu.vn/images/nav-icon.png") no-repeat 97% center;
+}
+
+#menu ul
+{
+    height:100%;    
+    margin: 0px;
+    padding: 0px;
+
+	
+    
+}
+#menu ul li
+{
+    list-style: none;
+    float: left;
+    height: 40px;
+
+}
+
+#menu ul li li
+{
+    min-width: 200px;
+    height: 30px;
+    float: none;
+    border-bottom: 1px solid #CCC;
+}
+
+#menu ul ul
+{
+    display: none;
+    position: absolute;
+    top: 40px;
+	
+    background-color:#999;
+	z-index:99999;
+}
+#menu ul li:hover ul
+{
+    display: block;
+}
+
+/*#menu .menu-item-home
+{
+    background: #359BED url("../images/home.png") no-repeat 50% 50%;  
+   width:50px; 
+   
+      
+}*/
+
+
+#menu ul li a
+{   
+    color: #FFF;
+    text-decoration: none;   
+    height: 30px;
+    padding: 5px 1em;
+    line-height: 30px;
+    display:block;  
+    font-size:0.8125em;  
+    font-weight: bold;
+    white-space: nowrap;
+}
+#menu  li:first-child a
+{
+	
+	background-color:#359BED;
+	background-image:url("http://fit.utehy.edu.vn/images/home.png");
+	background-repeat:no-repeat;
+				
+	background-position:50% 50%;	
+   width:50px; 
+   text-indent:-9999px;
+}
+#menu li li:first-child  a
+{
+	 background-color: #EEE;
+     color: #333;
+     line-height: 20px;
+     height:20px;    
+     font-weight:normal;
+	 width:auto;
+	  text-indent:0px;
+	  background-image:none;
+}
+  
+.isnews
+{
+	float:none !important;
+	margin:0px 0px 0px 6px;
+}
+#menu ul li a:hover
+{
+    background-color: #359BED;
+}
+
+#menu ul li:hover
+{
+    background-color: #359BED;
+}
+#menu ul ul
+{
+	
+}
+#menu li li a
+{
+     background-color: #EEE;
+     color: #333;
+     line-height: 20px;
+     height:20px;    
+     font-weight:normal;
+}
+
+#menu li li a:hover
+{
+     color: #FFF;
+}
+#banner
+{
+   height:auto !important;
+   padding:0px 0px 5px 0px;
+}
+.school
+{
+    color: #333;
+
+    position: absolute;
+    top: 15px;
+    font-weight: bold;
+	
+	height:auto !important;
+	
+}
+.depart
+{
+    position: absolute;
+    color: #359BED;
+    font-size: 1.75em; /* 28px */
+    font-weight: bold;
+    top: 45px;
+}
+
+
+#search
+{
+    margin-right: 0px;
+    width: 18.75em;
+    float: right;
+    margin-top:1em;
+}
+
+.searchfield
+{
+    font-size: 0.875em !important;
+    padding: 6px;
+    width: 17.60em; /* 238px;*/
+    height: 20px;
+    border: 1px solid #EEEEEE;
+    border-right: none;
+    font: inherit;
+    color: #999999;
+    display: block;
+    float: left;
+}
+
+#search .submit
+{
+    background: url("http://fit.utehy.edu.vn/images/search.png") no-repeat 50% 50%;
+    display: inline-block;
+    border: none;
+    width: 3em;
+    height: 34px;
+    text-indent: -999em;
+    float: right;
+    cursor: pointer;
+}
+
+.box-title
+{
+    background-image: url("http://fit.utehy.edu.vn/images/arrow-circle.png");
+    background-position: 96% 10px;
+    background-repeat: no-repeat;
+    background-color: #359BED;
+    padding: 8px 12px;
+    color: #FFFFFF;
+    font-size: 1.0em;
+    font-weight: bold;
+    width: 246px;
+    margin-bottom: 15px;
+    height: 20px;
+}
+
+.box-right
+{
+    width: 270px;
+    float: right;   
+    margin-bottom:15px; 
+    font-size:0.8125em;   
+}
+
+#announce, #link, #video, #hitcount
+{
+    min-height: 150px;
+    clear:both;
+}
+
+#hitcount
+{
+    height:150px;
+}
+
+
+.scroll-img {
+  border: 0px solid red;
+  width: 680px;
+  height: 180px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.box-title-1
+{   
+    border-bottom: 3px solid #e51400;
+    padding: 8px 0px;
+    display: inline-block;
+    color: #FFFFFF;    
+    font-weight: bold;
+    width: 100%; /*636px; */
+    margin-bottom: 15px;    
+    text-indent:36px;
+    height:20px;
+    
+}
+.box-text-1 {
+     background: url("http://fit.utehy.edu.vn/images/category.png") no-repeat 10px center;
+     background-color:  #e51400;
+     display:block; 
+     margin-top:-8px; 
+     width:240px; 
+     padding:7px 0px
+}
+
+
+.box-title-2
+{   
+    border-bottom: 3px solid #fa6800;
+    padding: 8px 0px;
+    display: inline-block;
+    color: #FFFFFF;    
+    font-weight: bold;
+    width: 100%; /*636px; */
+    margin-bottom: 15px;    
+    text-indent:36px;
+    height:20px;
+    
+}
+.box-text-2 {
+     background: url("http://fit.utehy.edu.vn/images/category.png") no-repeat 10px center;
+     background-color:  #fa6800;
+     display:block; 
+     margin-top:-8px; 
+     width:240px; 
+     padding:7px 0px
+}
+
+.box-title-3
+{
+      border-bottom: 3px solid #008a00;
+    padding: 8px 0px;
+    display: inline-block;
+    color: #FFFFFF;    
+    font-weight: bold;
+    width: 100%; /*636px; */
+    margin-bottom: 15px;    
+    text-indent:36px;
+    height:20px;    
+}
+.box-text-3 {
+     background: url("http://fit.utehy.edu.vn/images/category.png") no-repeat 10px center;
+     background-color:  #008a00;
+     display:block; 
+     margin-top:-8px; 
+     width:240px; 
+     padding:7px 0px
+}
+
+.box-title-4
+{
+       border-bottom: 3px solid #359BED;
+    padding: 8px 0px;
+    display: inline-block;
+    color: #FFFFFF;    
+    font-weight: bold;
+    width: 100%; /*636px; */
+    margin-bottom: 15px;    
+    text-indent:36px;
+    height:20px;
+    
+}
+.box-text-4 {
+     background: url("http://fit.utehy.edu.vn/images/category.png") no-repeat 10px center;
+     background-color:  #359BED;
+     display:block; 
+     margin-top:-8px; 
+     width:240px; 
+     padding:7px 0px
+}
+
+
+#news
+{
+    float: left;
+    min-height: 350px;
+    width: 680px;
+    margin-bottom:15px;    
+}
+
+#news-box-title
+{
+    background: url("http://fit.utehy.edu.vn/images/category.png") no-repeat 10px center;
+    background-color: #359BED;
+    padding: 8px 0px;
+    display: inline-block;
+    color: #FFFFFF;    
+    font-weight: bold;
+    width: 100%; /*636px; */
+    margin-bottom: 15px;
+    text-indent: 36px;
+    height:20px;
+}
+  
+#news-content
+{
+    min-height: 350px;   
+    font-size:0.8125em;  
+}
+
+#news-left
+{
+    float:left;
+    width:300px;
+    margin-bottom:1em;
+}
+#news-left img
+{
+	
+	width:100%;
+	height:215px;
+	margin:0px 0px 5px 0px;
+}
+#news-right
+{
+    float:right;
+    width:350px;
+     margin-bottom:1em;
+}
+
+.news-first
+{
+    font-weight:bold;
+   margin:10px 0px 0px 0px;
+}
+.news-first-subtitle
+{
+    padding:10px 0px;
+}
+
+.news-item
+{
+    width:100%;
+    min-height:14em;
+}
+.news-item img.isnews
+{
+	float:none;
+	height:auto;
+	width:auto;
+	margin:0px 0px 0px 10px;
+}
+.news-item img
+{
+    height:10em;
+    width:13em;
+    float:left;
+    margin-right:1.5em;
+    margin-bottom:1.5em;
+}
+
+.date
+{
+    background: url("http://fit.utehy.edu.vn/images/date.png") no-repeat left 0px;
+    padding-left: 20px;
+    margin-right: 14px;
+    line-height:24px;
+    color:#999;  
+    
+}
+.view
+{
+    background: url("http://fit.utehy.edu.vn/images/view.png") no-repeat left 0px;
+    padding-left: 20px;   
+     color:#999;    
+}
+.date-view
+{
+    margin-left:10px;
+    margin-bottom:10px;
+    color:#999;
+}
+.item-post
+{
+    min-height: 80px;  
+    border-bottom: 1px solid #EEE;  
+    margin-bottom:10px;   
+}
+
+.item-post img
+{
+    float:left;
+    margin-right:10px;   
+    height:5em;
+    width:6.5em;
+}
+
+.item-post a
+{   
+    margin-right:0px;
+    color:#464646;
+    font-weight:bold;
+}
+
+
+#events
+{
+    float: left;
+    min-height: 350px;
+    width: 100%;    
+    margin-bottom:2em;
+}
+
+#event-box-title
+{
+    background: url("http://fit.utehy.edu.vn/images/category.png") no-repeat 10px center;
+    background-color:  #359BED; /* #5FB435; */
+    padding: 8px 0px;
+    display: inline-block;
+    color: #FFFFFF;    
+    font-weight: bold;
+    width: 100%; /*636px; */
+    margin-bottom: 15px;    
+    text-indent:36px;
+    height:20px;
+    
+}
+
+#event-content
+{
+     font-size:0.8125em;
+}
+.event-post
+{   
+    margin-bottom: 15px;      
+    clear:both;    
+}
+
+.event-number
+{
+    float: left;
+    background: #999; /* #FA824F;   */
+    color: #FFFFFF;
+    display: block;
+    font-weight: 600;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    width: 24px;
+    margin-right: 10px;   
+}
+
+.event-number-gold
+{
+    float: left;    
+    color: #FFFFFF;
+    display: block;
+    font-weight: 600;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    width: 24px;
+    margin-right: 10px;   
+    background: #FA824F;    
+}
+
+a
+{
+    text-decoration:none;
+    color:#333;
+}
+
+a:hover
+{
+    color:#359BED;
+}
+
+.event-right{
+color:#464646;
+line-height:24px;
+ margin-left:114px;
+}
+
+.event-date 
+{
+    float:left;    
+    color: #333;
+    line-height:24px;
+    width:70px;
+    /*background-color:#5FB435;   */
+}
+
+.rss
+{
+    text-indent: -999em;
+    display: inline-block;
+    width: 24px;
+    float: right;    
+    background: url("http://fit.utehy.edu.vn/images/rss.png") no-repeat 10% center;
+}
+
+.announce-box-title
+{
+    background-color: #ff9933 !important;
+}
+
+#announce li
+{
+    line-height:20px;
+    margin-left:15px;
+    margin-bottom:15px;
+}
+
+#link ul
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+#link li
+{
+    line-height:20px;
+    margin-left:15px;
+    margin-bottom:15px;
+    color: #333;
+}
+#link a
+{
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    line-height: 20px;
+    white-space: nowrap;
+}
+#link a:hover
+{
+    color: #359BED;
+}
+#link a:hover li
+{
+    color: #359BED;
+}
+
+.read-more
+{        
+    display: inline-block;
+    width: 90px;
+    margin-right:11px;
+    float: right;    
+    background: url("http://fit.utehy.edu.vn/images/arrow-circle-dark.png") no-repeat right center;
+      
+}
+.read-more a
+{ 
+    display:block;
+    width:100%;
+    font-weight:bold;
+}
+
+
+#nav-footer
+{
+    width: 61.25em;
+    min-height: 14em;
+    margin:0px auto;   
+    padding-top:20px;     
+}
+
+#nav-footer ul
+{
+    margin:0px;
+    padding:0px;
+    padding-top:10px;  
+    
+}
+#nav-footer ul li
+{    
+   list-style-position:inside;
+   padding-left:5px;
+    font-weight:normal;
+    
+    height:24px;
+}
+
+#nav-footer a
+{
+    color:#FFF;
+    font-weight:600;    
+    min-height:24px;    
+    font-size:0.8125em;  
+   
+}
+
+#nav-footer li a
+{
+    color:#CCC;    
+    font-weight:normal;
+    padding-top:5px;
+   
+    
+}
+#nav-footer li a:hover
+{
+    color:#FFF;    
+}
+
+#nav-footer .item
+{
+    float:left;
+    width:24%;
+    height:12.5em; 
+    position:relative; 
+   
+}
+
+#copyright
+{
+    height:4.0em;
+    text-align:center;
+    color:#FFF;
+    width:100%;
+    margin:0em auto;   
+    padding-top:1em;
+    clear:both;
+    font-size:0.8125em;  
+}
+
+h1, h2, h3
+{    
+    margin:0px;
+    padding:0px;
+}
+#news-detail, #news-cate
+{
+    font-size:0.8125em;
+}
+#news-detail   img	
+{
+	max-width:100%;
+
+}
+.paging table
+{
+	float:left;
+	margin:0px 0px 0px -1px;
+}
+.paging
+{
+	border-bottom:3px solid #359BED;
+	height:30px;
+	margin:20px 0px 40px 0px;
+}
+
+.dlPaging a
+{
+	margin:0px 2px 0px 0px;
+	font-size:13px;
+	font-weight:bold;
+	color:#999999;
+
+
+
+			  	color:#999999;
+
+
+
+	padding:5px 8px;
+}
+.lbtPaging
+{
+	float:left;
+	margin:0px 2px 0px 0px;
+		font-size:13px;
+	font-weight:bold;
+
+	  	color:#999999;
+
+
+
+
+	padding:5px 8px;
+	
+}
+.dlPaging a:hover,.lbtPaging:hover
+{
+	text-decoration:none;
+	
+			   	background-color:#359BED;
+				   color:white;
+
+}
+.clear
+{
+	clear:both;
+}
+.news-ref
+{
+	min-height:300px;
+	margin:40px 0px 0px 0px;
+}
+.news-ref  ul
+{
+	padding:10px 0px 10px 0px;
+}
+
+.news-ref h3
+{
+   border-bottom:3px solid #359BED;
+   font-size:16px;
+   text-transform:uppercase;
+   font-weight:bold;
+   padding:10px 0px 5px 0px; 
+   color:#359BED;
+}
+.news-ref ul  li
+{  line-height: 20px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+.news-ref ul li span
+{
+  	color:#333333;
+	font-size:12px;
+	font-style:italic;
+}
+.news-ref ul li a
+{
+	color:#333333;
+	font-size:0.8125em;
+}
+.news-ref ul li a:hover
+{
+	color:#359BED;
+}
+.anmounce-content .event-right
+{
+
+	margin:0px;
+}
+.anmounce-content .event-right span
+{
+	font-style:italic;
+}
+
+.item
+{
+	
+	
+}
+.item h3
+{
+	min-height:10px;
+	padding:0px;
+	margin:20px 0px 0px 0px;
+}
+.item h3 strong
+{
+	float:left;
+	font-size:13px;
+	font-weight:bold;
+	color:#359BED;
+} 
+.item h3 em
+{
+	float:right;
+	
+	height:32px;
+
+		background-image:url(http://fit.utehy.edu.vn/images/view1.png);
+	background-repeat:no-repeat;
+	padding:0px 30px 0px 0px;
+	background-position:top right;
+	font-weight:normal;
+font-size:13px;
+	font-style:italic;
+}
+.item h3 em:hover
+{cursor:pointer;
+ opacity:0.8;
+}
+.item h4
+{
+	min-height:20px;
+}
+.item p
+{
+	margin:0px 0px 30px 0px;
+}
+.item h4   span
+{
+	
+	padding:0px 0px 0px 20px;
+	font-weight:normal;
+	margin:0px 50px 0px 0px;
+	float:left;
+	font-style:italic;
+	background-image:url(http://fit.utehy.edu.vn/images/date.png);
+	background-repeat:no-repeat;
+}
+.item h4 span.email
+{
+	 background-image:url(http://fit.utehy.edu.vn/images/email.png);
+}
+.rep
+{
+	background-color:#f8f7f7;
+	padding:9px;margin:0px 0px 0px 0px;
+	position:relative;
+
+	
+}
+.rep em
+{
+	position:absolute;
+	top:-20px;
+	left:0px;
+		  height:0px;
+		  width:0px;
+
+	border-color:red;
+	
+	border-color:transparent;
+		border-width:20px;
+	border-left-color:#f8f7f7;
+}
+.item .rep h3
+{
+	padding:0px;
+	margin:5px 0px 5px 0px;
+	
+}
+.item .rep h4
+{
+	padding:0px 0px;
+	margin:10px 0px 5px 0px;
+}
+.post-question
+{
+
+}
+.post-question p
+{
+	 font-size:13px;
+	 padding:0px;
+	 margin:10px 0px 5px 0px;
+	
+
+}
+.post-question  span
+{
+	color:red;
+	font-size:12px;
+	
+}
+.post-question input
+{
+	width:250px;
+	padding:0px 6px;
+	height:26px;
+}
+.post-question input[type="submit"]
+{
+	margin:30px 0px 50px 0px;
+	float:left;
+	width:90px;
+	height:30px;
+	color:white;
+	background-color:#359BED;
+	
+	border:none;
+}
+.post-question input[type="submit"]:hover
+{
+	cursor:pointer;
+	background-color:#1766a5;
+}
+.ckedit
+{
+
+	border-radius:0px;
+}
+
+
+span.cke_skin_kama
+{
+	border-radius:0px !important;
+		margin:0px 0px 5px 0px;
+}
+.cke_skin_kama .cke_wrapper
+{
+	border-radius:0px !important;
+}
+.lblNote
+{
+	color:#359BED !important;
+	font-size:20px !important;
+	
+}
+#cse-search-results
+{
+	height:auto;
+	min-height:600px;
+}
+.gsc-control-cse
+{
+	width:100% !important;
+}
+
+#cse-search-results iframe
+{
+	width:100% !important;
+	max-height:1200px !important;
+
+}
+#cse-search-results .gs-webResult
+{
+  width:100% !important;
+}
+.box
+{	   float:left;
+		width:100%;
+		margin:10px 0px 10px 0px;
+	
+}
+.box ul
+{
+	width:100%;
+	list-style:none;
+	
+}
+.box ul li
+{
+	
+	list-style:none;
+	margin:8px 0px;
+}
+.box ul li a
+{
+    display:block;
+    height:48px;  opacity:0.8;
+}
+.box ul li a:hover
+{
+     opacity:1;
+}
+
+.box ul li.item4 a
+{
+    background-color:#9a165a;
+}
+
+.box ul li.item1 a
+{
+    background-color:#00aaff;
+}
+.box ul li.item2 a
+{
+    background-color:#fa6800; /*#d24726;*/
+}
+.box ul li.item3 a
+{
+    
+    background-color:#008a00; /*#0a4bb3;*/
+}
+.box ul li.item0 a
+{
+    background-color: #e51400;
+}
+.box ul li img
+{
+	float:left;
+	margin:5px 15px 0px 20px;
+}
+.box ul li a span
+{
+	float:left;
+	font-size:18px;
+	color:white;
+	margin:13px 0px 0px 0px;
+}
+.profile
+{
+	font-size:13px;
+	
+	
+}
+.profile .avatar
+{
+	float:left;
+	width:160px;
+	height:190px;
+	margin:0px 40px 20px 0px;
+}
+.info p
+{
+	font-size :13px;
+	padding:0px;
+	margin:0px;
+	padding:0px 0px 8px 0px;
+}
+.profile .info
+{
+	float:left;
+	padding:1px 0px 0px 0px;
+	border:0px solid red;
+	margin:0px 0px 20px 0px;
+}
+#backtotop
+{
+	cursor:pointer;
+	width:48px;
+	height:48px;
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	user-select:none;
+
+	background-image:url(http://fit.utehy.edu.vn/images/totop.png)
+}
+#backtotop:focus
+{
+	outline:none;
+	border:none;
+	cursor:none;
+}

@@ -1,0 +1,355 @@
+﻿body
+{
+	margin: 0px;
+	font-size: 1em;
+	padding: 5px;
+	min-width:310px;
+}
+
+#menu
+{
+	width: 100%;
+	height: 2.5em;
+	position: fixed;
+
+	left:0px;
+	top:0px;
+	
+}
+
+
+#nav
+{
+		 width:98%;
+	float: none;
+	height: auto;
+	height: auto;
+margin:0px 0px 20px 0px;
+}
+
+.searchfield
+{
+	width: 75%;
+	padding: 6px 3%;
+}
+
+#search .submit
+{
+	width: 18% !important;
+	background-color: #359BED;
+}
+
+#nav-site
+{
+	height: auto;
+	float: left;
+	width: auto;
+}
+
+#nav-site a
+{
+	line-height: initial;
+	padding: 0px;
+}
+#menu li a:first-child
+{
+	width:auto;
+	background-position:10px 5px;
+}
+
+
+.fix-header #menu
+{
+
+
+}
+#nav-date
+{
+	float: left;
+	width: 100%;
+	margin: 15px 0px 8px 10px;
+	line-height: 10px;
+}
+
+#pull
+{
+	display: block;
+}
+#menu
+{
+	cursor:pointer;
+}
+#menu > ul
+{
+	display: none;
+	height: auto;
+
+	background-color: #359BED;
+	overflow:hidden;
+	
+
+	
+	
+}
+
+#menu li
+{
+	display: inline;
+	width: 100%;
+	border-bottom: 1px solid #CCC;
+	cursor:pointer;
+	float: none;
+}
+
+#menu li a:hover
+{
+	background-color:#085ca0 !important;
+}
+#menu ul ul
+{
+	height: auto;
+	position: relative;
+	top: 0px;
+}
+
+#menu ul li:hover ul
+{
+	display: none;
+}
+
+#menu li li a:hover
+{
+	background-color: #085ca0;
+}
+
+#menu .menu-item-home
+{
+	background: #359BED url("http://fit.utehy.edu.vn/images/home.png") no-repeat 1em 50%;
+}
+
+#menu li li
+{
+	width: 100%;
+}
+
+.show
+{
+	position: absolute;
+	top: 2.5em;
+}
+#search
+{
+	margin-top:10px;
+}
+
+#header
+{
+	height: 8em;
+	width: 100%;
+}
+
+#banner
+{
+	margin-top: 35px;
+	height: 3.5em;
+}
+
+.school
+{
+	position: static;
+	color: #333;
+	font-size: 0.75em; /* 16px*/
+	font-weight: bold;
+	width: 100%;
+	padding-top: 0.75em;
+	height: 1.25em;
+}
+
+.depart
+{
+	position: static;
+	color: #359BED;
+	font-size: 1.25em; /* 28px */
+	font-weight: bold;
+	height: 1.5em;
+	width: 100%;
+	padding-top: 0.25em;
+	top: 0px;
+}
+
+#search
+{
+	position: static;
+	margin-left: 0px;
+	width: 100%;
+	float: left;
+}
+
+#searchform .searchfield
+{
+	font-size: 0.875em !important;
+	padding: 6px;
+	width: 80%; /* 238px;*/
+}
+
+#main
+{
+	width: 100%;
+}
+
+#slide-frame
+{
+	display: none;
+}
+
+#content
+{
+	width: 100%;
+}
+
+#news
+{
+	width: 100%;
+}
+
+#news-left
+{
+	float: none;
+	width: 100%;
+}
+
+#news-left img
+{
+	width: 100%;
+}
+
+#news-right
+{
+	float: none;
+	width: 100%;
+}
+
+#news-content
+{
+	float: none;
+	width: 100%;
+}
+
+#events
+{
+	height: auto;
+}
+
+
+#right
+{
+	width: 100%;
+	margin-top: 1em;
+}
+
+#video, #hitcount, #link
+{
+	display: none;
+}
+
+.box-title
+{
+	background: url("http://fit.utehy.edu.vn/images/category.png") no-repeat 10px center;
+	background-color: #359BED;
+	padding: 8px 0px;
+	display: inline-block;
+	color: #FFFFFF;
+	font-size: 1.0em;
+	font-weight: bold;
+	width: 100%; /*636px; */
+	margin-bottom: 15px;
+	text-indent: 36px;
+	height: 20px;
+}
+
+.box-right
+{
+	width: 100%;
+	float: left;
+	margin-bottom: 1em;
+}
+
+
+#footer
+{
+	width: 100%;
+	height: 5em;
+	position: static;
+	min-width: initial;
+}
+
+#nav-footer
+{
+	display: none;
+}
+
+.item em.show
+{
+	position: initial;
+}
+
+.item h4 span
+{
+	display: block;
+	width: 100%;
+	margin: 0px 0px 5px 0px;
+}
+
+/**********/
+#staff .item
+{
+	float:none !important;
+	width:98% !important;
+	
+}
+
+#staff .row
+{
+	height:auto !important;
+}
+.news-item
+{
+  min-height:100px;
+  padding:0px 0px 20px 0px;
+}
+.news-item img
+{
+	width:120px;
+	height:90px;
+	
+}
+.news-item .subtitle
+{
+	display:none;
+}
+
+.news-item img.isnews
+{
+	display:inline;
+
+}
+#news-detail img
+{
+	 display: block;
+  height: auto;
+  max-width: 100%;
+  width:auto !important;
+}
+
+#news-detail table
+{	   display: block !important;
+	 height: auto  !important;
+  max-width: 100%  !important;
+  width:auto !important;
+  overflow:hidden;
+
+}
+#backtotop
+{
+	display:none !important;
+}
